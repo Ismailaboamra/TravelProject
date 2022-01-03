@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=divice-width, initial-scale=1.0">
+	<link rel="stylesheet" type="text/css" href="css/contact.css">
+	<title>contact</title>
+	<style type="text/css">
+		.container .box .name-text input{
+			position: relative;
+			display: none;
+			background: transparent;
+			border: 1px solid #fff;
+			top: -20px;
+			color: #fff;
+			text-decoration: none;
+			transition: 0.6s ease;
+			text-align: center;
+		}
+		.btn{
+			padding: 5px 40px;
+		}
+		.btn1{
+			margin: 0px -20px;
+			padding: 5px 40px;
+		}
+		.btn2{
+			padding: 5px 60px;
+		}
+		.btn3{
+			padding: 5px 37px;
+			margin: 0px -2px;
+		}
+		.btn4{
+			padding: 5px 50px;
+		}
+		.btn5{
+			padding: 5px 80px;
+		}
+		.container .box:hover .name-text input{
+			display: block;
+			top: -20px;
+		}
+		.container .box .name-text input:hover{
+			background-color: #fff;
+		    color: #000;
+		}
+	</style>
+	<script>
+		function PopWindowOne(){
+			floatingWindow = window.open("calendar.html","","height=600,width=800,scrollbars=no");
+		}
+    </script>
+</head>
+<body>
+    <h1 class="heading">Contact us!</h1>
+	<div class="main">
+        <ul>
+          <ul class="list">
+            <li class="logo"><a href="index.html"><img src="earth-globe.png" alt="Logo" style="width:36px;height:36px"></a></li>
+            <div class="search">
+            <div class="search">
+	            <form method="POST" action="info.php">
+	              <input type="text" name="search_p" placeholder="Search.." size="50">
+	          
+	              <input type="image" name="submit_p" src="search_icon.png" alt="Search image" style="width:22;height:22; margin-left: 35px;">
+	            </form>
+          	</div>
+          </ul>
+          <ul class="list2">
+			<li><a href="index.php">Home</a></li>
+            <li><a id="long" href="destination.html">Destination</a></li>
+			<li><a href="gallery.html">Gallery</a></li>
+	        <li><a href="feedback.html">Feedback</a></li>
+			<li class="active-menu"><a href="contact.html">Contact</a></li>
+			<li><a href="#" onclick="PopWindowOne()">Calendar</a></li>
+          </ul>
+        </ul>
+    </div>
+    <div class="myform">
+        <form action="contact.html" method="post">
+            <p>do u have any question about using our website?!.</p>
+            <p> Wanna know details about travels ?. </p>
+            <p>we will be happy to help u , u can sent a message to our email : contactUs@gmail.com.</p>
+            <p>and we will make sure to respone .</p>
+            <p>if u want to reach us with other way u can call at this number : 0528968745.</p>
+            <p>Thank you for your time.</p>
+        </form>
+    </div>
+</body>

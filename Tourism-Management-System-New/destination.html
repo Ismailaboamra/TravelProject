@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta name="viewport" content="width=divice-width, initial-scale=1.0">
+	<link rel="stylesheet" type="text/css" href="css/destination.css">
+	<title>Destinations</title>
+	<style type="text/css">
+		.container .box .name-text input{
+			position: relative;
+			display: none;
+			background: transparent;
+			border: 1px solid #fff;
+			top: -20px;
+			color: #fff;
+			text-decoration: none;
+			transition: 0.6s ease;
+			text-align: center;
+		}
+		.btn{
+			padding: 5px 40px;
+		}
+		.btn1{
+			margin: 0px -20px;
+			padding: 5px 40px;
+		}
+		.btn2{
+			padding: 5px 60px;
+		}
+		.btn3{
+			padding: 5px 37px;
+			margin: 0px -2px;
+		}
+		.btn4{
+			padding: 5px 50px;
+		}
+		.btn5{
+			padding: 5px 25px;
+		}
+		.container .box:hover .name-text input{
+			display: block;
+			top: -20px;
+		}
+		.container .box .name-text input:hover{
+			background-color: #fff;
+		    color: #000;
+		}
+	</style>
+	<script>
+		function PopWindowOne(){
+			floatingWindow = window.open("calendar.html","","height=600,width=800,scrollbars=no");
+		}
+    </script>
+</head>
+<body>
+	<h1 class="heading">Poupular Destinations</h1>
+	<div class="main">
+        <ul>
+          <ul class="list">
+            <li class="logo"><a href="index.html"><img src="earth-globe.png" alt="Logo" style="width:36px;height:36px"></a></li>
+            <div class="search">
+            <div class="search">
+	            <form method="POST" action="info.php">
+	              <input type="text" name="search_p" placeholder="Search.." size="50">
+	              <input type="image" name="submit_p" src="search_icon.png" alt="Search image" style="width:22;height:22; margin-left: 35px;">
+	            </form>
+          	</div>
+          </ul>
+          <ul class="list2">
+            <li><a href="index.php">Home</a></li>
+            <li class="active-menu"><a id="long" href="destination.html">Destination</a></li>
+            <li><a href="gallery.html">Gallery</a></li>
+            <li><a href="signup.html">Sign Up</a></li>
+            <li><a href="feedback.html">Feedback</a></li>
+			<li><a href="contact.html">Contact</a></li>
+			<li><a href="#" onclick="PopWindowOne()">Calendar</a></li>
+          </ul>
+        </ul>
+    </div>
+	<div class="container">
+		<div class="box">
+			<div class="imgBox">
+				<img src="images//gallery/Eilat5.jpg" alt="Eilat Image" style="width: auto;height: 270px;">
+			</div>
+			<div class="name-text name-pading1 top1">
+				<h1>Eilat</h1>
+				<div class="btns">
+					<form method="POST" action="info.php">
+						<input type="submit" name="Eilat" class="btn1" value="Visit">
+					</form>
+					<form method="POST" action="comments.php">
+						<input type="submit" name="Eilat1" class="btn1" value="Reviwes">
+					</form>
+				</div>
+			</div>
+		</div>
+		<div class="box">
+			<div class="imgBox">
+				<img src="images//gallery/Banias-Springs.jpg" alt="banias Image" style="width: auto;height: 270px;">
+			</div>
+			<div class="name-text name-pading2 top1">
+				<h1>banias River</h1>
+				<div class="btns">
+					<form method="POST" action="info.php">
+						<input type="submit" name="baniasRiver" class="btn" value="Visit">
+					</form>
+					<form method="POST" action="comments.php">
+						<input type="submit" name="baniasRiver1" class="btn" value="Reviwes">
+					</form>
+				</div>
+			</div>
+		</div>
+		<div class="box">
+			<div class="imgBox">
+				<img src="images//gallery/jurselm2.jpg" alt="jurselm Image">
+			</div>
+			<div class="name-text name-pading3 top1">
+				<h1>jurselm</h1>
+				<div class="btns">
+					<form method="POST" action="info.php">
+						<input type="submit" name="jurselm" class="btn" value="Visit">
+					</form>
+					<form method="POST" action="comments.php">
+						<input type="submit" name="jurselm1" class="btn" value="Reviwes">
+					</form>
+				</div>
+			</div>
+		</div>
+		<div class="box">
+			<div class="imgBox">
+				<img src="images//gallery/Sea of Galilee2.jpg" alt="TheDeadSea Image">
+			</div>
+			<div class="name-text name-pading4 top1">
+				<h1>TheDeadSea</h1>
+				<div class="btns">
+					<form method="POST" action="info.php">
+						<input type="submit" name="TheDeadSea" class="btn" value="Visit">
+					</form>
+					<form method="POST" action="comments.php">
+						<input type="submit" name="TheDeadSea1" class="btn" value="Reviwes">
+					</form>
+				</div>
+			</div>
+		</div>
+		<div class="box">
+			<div class="imgBox">
+				<img src="images//gallery/Sea of Galilee4.jpg" alt="Sea of Galilee Image">
+			</div>
+			<div class="name-text name-pading5 top2">
+				<h1>Sea of Galilee</h1>
+				<div class="btns">
+					<form method="POST" action="info.php">
+						<input type="submit" name="SeaofGalilee" class="btn5" value="Visit">
+					</form>
+					<form method="POST" action="comments.php">
+						<input type="submit" name="SeaofGalilee1" class="btn5" value="Reviwes">
+					</form>
+				</div>
+			</div>
+		</div>
+		<div class="box">
+			<div class="imgBox">
+				<img src="images//gallery/mountain hermon3.jpg" alt="Russia Image">
+			</div>
+			<div class="name-text name-pading6 top2">
+				<h1>mountain hermon</h1>
+				<div class="btns">
+					<form method="POST" action="info.php">
+						<input type="submit" name="mountainhermon" class="btn2" value="Visit">
+					</form>
+					<form method="POST" action="comments.php">
+						<input type="submit" name="mountainhermon1" class="btn2" value="Reviwes">
+					</form>
+				</div>
+			</div>
+		</div>
+		<div class="box">
+			<div class="imgBox">
+				<img src="images//gallery/nazareth.jpg" alt="nazareth  Image">
+			</div>
+			<div class="name-text name-pading7 top2">
+				<h1>nazareth</h1>
+				<div class="btns">
+					<form method="POST" action="info.php">
+						<input type="submit" name="nazareth" class="btn3" value="Visit">
+					</form>
+					<form method="POST" action="comments.php">
+						<input type="submit" name="nazareth1" class="btn3" value="Reviwes">
+					</form>
+				</div>
+			</div>
+		</div>
+		<div class="box">
+			<div class="imgBox">
+				<img src="images//gallery/TelAviv3.jpg" alt="TelAviv Image">
+			</div>
+			<div class="name-text name-pading8 top2">
+				<h1>TelAviv</h1>
+				<div class="btns">
+					<form method="POST" action="info.php">
+						<input type="submit" name="TelAviv" class="btn2" value="Visit">
+					</form>
+					<form method="POST" action="comments.php">
+						<input type="submit" name="TelAviv1" class="btn2" value="Reviwes">
+					</form>
+				</div>
+			</div>
+		</div>
+		<div class="box">
+			<div class="imgBox">
+				<img src="images//gallery/haifa.jpg" alt="Haifa Image">
+			</div>
+			<div class="name-text name-pading9 top3">
+				<h1>Haifa</h1>
+				<div class="btns">
+					<form method="POST" action="info.php">
+						<input type="submit" name="Haifa" class="btn3" value="Visit">
+					</form>
+					<form method="POST" action="comments.php">
+						<input type="submit" name="Haifa1" class="btn3" value="Reviwes">
+					</form>
+				</div>
+			</div>
+		</div>
+		<div class="box">
+			<div class="imgBox">
+				<img src="images//gallery/Jaffa.jpg" alt="Jaffa Image">
+			</div>
+			<div class="name-text name-pading10 top3">
+				<h1>Jaffa</h1>
+				<div class="btns">
+					<form method="POST" action="info.php">
+						<input type="submit" name="Jaffa" class="btn4" value="Visit">
+					</form>
+					<form method="POST" action="comments.php">
+						<input type="submit" name="Jaffa1" class="btn4" value="Reviwes">
+					</form>
+				</div>
+			</div>
+		</div>
+		<div class="box">
+			<div class="imgBox">
+				<img src="images//gallery/ramon crater.jpg" alt="Ramon Crater Image">
+			</div>
+			<div class="name-text name-pading11 top3">
+				<h1>Ramon Crater</h1>
+				<div class="btns">
+					<form method="POST" action="info.php">
+						<input type="submit" name="RamonCrater" class="btn4" value="Visit">
+					</form>
+					<form method="POST" action="comments.php">
+						<input type="submit" name="RamonCrater1" class="btn4" value="Reviwes">
+					</form>
+				</div>
+			</div>
+		</div>
+		<div class="box">
+			<div class="imgBox">
+				<img src="images//gallery/Akko.jpg" alt="Akko Image">
+			</div>
+			<div class="name-text name-pading12 top3">
+				<h1>Akko</h1>
+				<div class="btns">
+					<form method="POST" action="info.php">
+						<input type="submit" name="Akko" class="btn2" value="Visit">
+					</form>
+					<form method="POST" action="comments.php">
+						<input type="submit" name="Akko1" class="btn2" value="Reviwes">
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

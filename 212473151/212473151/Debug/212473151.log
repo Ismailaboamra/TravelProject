@@ -1,0 +1,4 @@
+﻿  hashtable .c
+D:\Donlowad\hashtable .c(14,21): warning C4018: '<': signed/unsigned mismatch
+D:\Donlowad\hashtable .c(26,18): warning C4018: '<': signed/unsigned mismatch
+  212473151.vcxproj -> C:\Users\אסמעיל\Desktop\212473151\Debug\212473151.exe
