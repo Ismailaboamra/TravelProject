@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Travel Booking</title>
+    <style>
+        body {
+            text-align: center;
+            padding: 40px 0;
+            background: #EBF0F5;
+        }
+        h1 {
+            font-family: "Nunito Sans", "Helvetica Neue", sans-serif;
+            font-weight: 900;
+            font-size: 40px;
+            margin-bottom: 10px;
+        }
+        p {
+            color: #404F5E;
+            font-family: "Nunito Sans", "Helvetica Neue", sans-serif;
+            font-size:20px;
+            margin: 0;
+        }
+        i{
+            font-size: 100px;
+            line-height: 200px;
+            margin-left:-15px;
+        }
+        span{
+            font-size: 170px;
+            line-height: 200px;
+        }
+        .card {
+            background: white;
+            padding: 60px;
+            border-radius: 4px;
+            box-shadow: 0 2px 3px #C8D0D8;
+            display: inline-block;
+            margin: 0 auto;
+            width: 22%;
+        }
+        .circle{
+            border-radius:200px;
+            height:200px;
+            width:200px;
+            background: #F8FAF5;
+            margin:0 auto;
+        }
+        .go-to{
+            width: 200px;
+            padding: 10px;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <div class="card">
+            <%
+            if(message=="success"){ %>
+                <div class="circle"  style="border: 5px solid #05c718;">
+                    <i class="checkmark" style="color: #05c718;">✓</i>
+                </div>
+                <h1 style="color: #05c718;">Success</h1> 
+                <p>Your ticket booked successfully<br/> Thank You, Enjoy your ride!</p>
+            <%}else if(message=="failed"){%>
+                <div class="circle" style="border: 5px solid #ff0505;">
+                    <span class="checkmark" style="color: #ff0505;">!</span>
+                </div>
+                <h1 style="color: #ff0505;">Failed</h1> 
+                <p>Payment failed<br/> Please try again!</p>
+            <% } %>
+            <form action="/planeList" method="GET">
+                <input class="go-to" type="submit" value="Go To Home Page">
+            </form>
+        </div>
+    </div>
+</body>
+</html>

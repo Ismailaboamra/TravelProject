@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+
+	<title>Travel Booking</title>
+
+	<!-- Google font -->
+	<link href="https://fonts.googleapis.com/css?family=Lato:400,700" rel="stylesheet">
+
+	<!-- Bootstrap -->
+	<link type="text/css" rel="stylesheet" href="css/bootstrap.min.css" />
+
+	<!-- Custom stlylesheet -->
+	<link type="text/css" rel="stylesheet" href="css/style_dashboard.css" />
+
+	<link href='https://fonts.googleapis.com/css?family=Roboto:400,100,300,700' rel='stylesheet' type='text/css'>
+
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+	
+	<link rel="stylesheet" href="css/style_nav.css">
+	<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+	<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+	<!--[if lt IE 9]>
+		  <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+		  <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+		<![endif]-->
+
+</head>
+
+<body>
+    <section class="ftco-section">
+        <div class="container-fluid px-md-5 top-box">
+            <div class="row justify-content-between">
+                <div class="col-md-8 order-md-last">
+                    <div class="row">
+                        <div class="col-md-6 text-center">
+                            <a class="navbar-brand" href="index.html">Fly Anyware <span>Book Your Flight</span></a>
+                        </div>
+                        <!-- <div class="col-md-6 d-md-flex justify-content-end mb-md-0 mb-3">
+                            <form action="#" class="searchform order-lg-last">
+								<div class="form-group d-flex"> 
+									<input type="text" class="form-control pl-3 search-box" placeholder="Search">
+									<button type="submit" placeholder="" class="form-control search"><span class="fa fa-search"></span></button>
+								</div>
+							</form>
+                        </div> -->
+                    </div>
+                </div>
+                <div class="col-md-4 d-flex">
+                    <div class="social-media">
+                        <p class="mb-0 d-flex">
+                            <a href="#" class="d-flex align-items-center justify-content-center"><span class="fa fa-facebook"><i class="sr-only">Facebook</i></span></a>
+                            <a href="#" class="d-flex align-items-center justify-content-center"><span class="fa fa-twitter"><i class="sr-only">Twitter</i></span></a>
+                            <a href="#" class="d-flex align-items-center justify-content-center"><span class="fa fa-instagram"><i class="sr-only">Instagram</i></span></a>
+                            <a href="#" class="d-flex align-items-center justify-content-center"><span class="fa fa-dribbble"><i class="sr-only">Dribbble</i></span></a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
+            <div class="container-fluid">
+            
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="fa fa-bars"></span> Menu
+                </button>
+                <div class="collapse navbar-collapse" id="ftco-nav">
+                <ul class="navbar-nav m-auto">
+                    <li class="nav-item active"><a href="/dashboard" class="nav-link">Home</a></li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="dropdown04" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Country List</a>
+                        <div class="dropdown-menu" aria-labelledby="dropdown04">
+                            <span class="dropdown-item">India</span>
+                            <span class="dropdown-item">USA</span>
+                            <span class="dropdown-item">France</span>
+                            <span class="dropdown-item">Japan</span>
+                        </div>
+                    </li>
+                    <li class="nav-item"><a href="/" class="nav-link">Logout</a></li>
+                    <!-- <li class="nav-item"><a href="/profile" class="nav-link">My Profile</a></li> -->
+                    <!--<li class="nav-item"><a href="#" class="nav-link">Contact</a></li> -->
+                </ul>
+                </div>
+            </div>
+        </nav>
+    </section>
+	<div id="booking" class="section">
+		<div class="section-center mt-5">
+			<div>
+				<div class="container mt-5">
+					<div class="row">
+						<div class="col-md-4">
+							<div class="booking-cta">
+								<h1>Book your flight today</h1>
+								<p>A mile of highway will take you a mile. A mile of runway will take you anywhere!</p>
+							</div>
+						</div>
+						<div class="col-md-7 col-md-offset-1">
+							<div class="booking-form">
+								<form method="POST" action="/planelist">
+									<div class="form-group">
+										<div class="form-checkbox">
+											<label for="roundtrip">
+												<input type="radio" id="roundtrip" name="flightType" value="Round Trip" onclick="setArrow(this.value)" required>
+												<span></span>Roundtrip
+											</label>
+											<label for="one-way">
+												<input type="radio" id="one-way" name="flightType" value="One Way" onclick="setArrow(this.value)" required>
+												<span></span>One way
+											</label>
+											<label for="multi-city">
+												<input type="radio" id="multi-city" name="flightType" value="Multi City" onclick="setArrow(this.value)" required>
+												<span></span>Multi-City
+											</label>
+										</div>
+									</div>
+									<div id="place">
+										<div class="row" id="entrySection_1">
+											<div class="col-md-6" id="from">
+												<div class="form-group">
+													<span class="form-label">Flying from</span>
+													<input class="form-control" type="text" name="from" placeholder="City or airport">
+												</div>
+											</div>
+											
+											<img class="arrow" id="ra" src="images/right-arrow.png" alt="arrow"/>
+											<img class="arrow" id="lra" src="images/transfer.png" alt="arrow" style="display: none;"/>
+											<div class="col-md-5" id="to">
+												<div class="form-group">
+													<span class="form-label">Flyning to</span>
+													<input class="form-control" id="to1" type="text" name="to" placeholder="City or airport" onchange="makePlaceSame(this.id)">
+												</div>
+											</div>
+
+											<!-- for multi-city travel only -->
+											<div class="col-md-3" style="display: none;" id="multi-city-dep">
+												<div class="form-group">
+													<span class="form-label">Departing</span>
+													<input class="form-control" type="date" id="mcdep" name="depart" required disabled>
+												</div>
+											</div>
+										</div>
+										<div id="extra-city">
+										</div>
+									</div>
+									<div class="row add-place" id="add-place" style="display: none;">
+										<button type="button" class="col-md-11 ml-4" id="add" onclick="addPlace()">Add Another Place</button>
+									</div>
+									<div class="row" id="timings">
+										<div class="col-md-6">
+											<div class="form-group">
+												<span class="form-label">Departing</span>
+												<input class="form-control" type="date" id="odep" name="depart" required disabled>
+											</div>
+										</div>
+										<div class="col-md-6">
+											<div class="form-group">
+												<span class="form-label">Returning</span>
+												<input class="form-control" id="return" type="date" name="return" required disabled>
+											</div>
+										</div>
+									</div>
+									<div class="row">
+										<div class="col-md-4">
+											<div class="form-group">
+												<span class="form-label">Adults (18+)</span>
+												<input class="form-control" id="" type="number" name="adult" value="1" min="1" required>
+											</div>
+										</div>
+										<div class="col-md-4">
+											<div class="form-group">
+												<span class="form-label">Children (0-17)</span>
+												<input class="form-control" id="" type="number" name="child" value="0" min="0" required>
+												<span class="select-arrow"></span>
+											</div>
+										</div>
+										<div class="col-md-4">
+											<div class="form-group">
+												<span class="form-label">Travel class</span>
+												<select class="form-control" name="class">
+													<option>Economy</option>
+													<option>Business</option>
+													<option>First</option>
+												</select>
+												<span class="select-arrow"></span>
+											</div>
+										</div>
+									</div>
+									<div class="form-btn">
+										<input  class="submit-btn" type="submit" value="Show flights">
+									</div>
+								</form>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+    <script src="js/jquery.min.js"></script>
+    <script src="js/popper.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/main.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script>
+		function getDate(){
+			var utc = new Date().toISOString().slice(0, 10);
+			return utc;
+		}
+		var date = getDate();
+		var datebox = document.getElementById("mcdep");
+        datebox.setAttribute("min", date);
+		var datebox = document.getElementById("odep");
+        datebox.setAttribute("min", date);
+		var datebox = document.getElementById("return");
+        datebox.setAttribute("min", date);
+		var radioOption="";
+		function setArrow(val){
+			var collection = document.getElementsByClassName("arrow");
+			collection[0].style.display="none";
+			collection[1].style.display="none";
+			document.getElementById('add-place').style.display="none";
+			document.getElementById('extra-city').style.display="none";
+			document.getElementById('extra-city').innerHTML="";
+			document.getElementById('return').disabled=false;
+			document.getElementById('timings').style.display="block";
+			document.getElementById("from").className="col-md-6";
+			document.getElementById("to").className="col-md-5";
+			document.getElementById("multi-city-dep").style.display="none";
+			document.getElementById("mcdep").disabled=true;
+			document.getElementById("odep").disabled=false;
+			radioOption="";
+			if(val=="Round Trip"){
+				document.getElementById('lra').style["display"]="block";
+			}
+			if(val=="One Way"){
+				document.getElementById('ra').style["display"]="block";
+				document.getElementById('return').disabled=true;
+			}
+			if(val=="Multi City"){
+				document.getElementById('ra').style["display"]="block";
+				document.getElementById('add-place').style.display="block";
+				document.getElementById('timings').style.display="none";
+				document.getElementById("from").className="col-md-4";
+				document.getElementById("to").className="col-md-4";
+				document.getElementById("multi-city-dep").style.display="block";
+				document.getElementById("mcdep").disabled=false;
+				document.getElementById("odep").disabled=true;
+				document.getElementById('return').disabled=true;
+				radioOption=val;
+			}
+		}
+		var count=1;
+		var to_id=1;
+		function addPlace() {
+			count+=1
+			document.getElementById('extra-city').style.display="block";
+			var card = document.createElement("div");
+			card.innerHTML =`<div class="row" id="entrySection_`+count+`">
+								<div class="col-md-4">
+									<div class="form-group">
+										<span class="form-label">Flying from</span>
+										<input class="form-control" type="text" name="from" id="to`+to_id+`1" placeholder="City or airport">
+									</div>
+								</div>
+								
+								<img class="arrow" id="ra" src="images/right-arrow.png" alt="arrow"/>
+								<img class="arrow" id="lra" src="images/transfer.png" alt="arrow" style="display: none;"/>
+								<div class="col-md-4">
+									<div class="form-group">
+										<span class="form-label">Flyning to</span>
+										<input class="form-control" type="text" name="to" id="to`+(to_id+1)+`" placeholder="City or airport" onchange="makePlaceSame(this.id)">
+									</div>
+								</div>
+								<div class="col-md-3">
+									<div class="form-group">
+										<span class="form-label">Departing</span>
+										<input class="form-control" type="date" id="mcdep`+(to_id+1)+`" name="depart" required>
+									</div>
+								</div>
+							</div>`;
+			var element = document.getElementById("extra-city");
+			element.appendChild(card);
+			to_id+=1;
+			
+			var datebox = document.getElementById("mcdep"+to_id);
+				datebox.setAttribute("min", date);
+		}
+
+		function makePlaceSame(id){
+			if(radioOption=="Multi City"){
+				var value = document.getElementById(id).value;
+				if(document.getElementById(id+"1")!=null)
+					document.getElementById(id+"1").value=value;
+			}
+		}
+	</script>
+</body>
+
+</html>

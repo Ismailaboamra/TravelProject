@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/adminStyle.css" type="text/css">
+    <title>Travel Booking</title>
+</head>
+<body>
+    <div class="container">
+        <div class="top-box">
+            <h2>Travel Booking</h2>
+        </div>
+        <div class="nav-box">
+            <div class="nav-btn">
+                <button><a href="/addflight">ADD FLIGHT</a></button>
+            </div>
+            <div class="nav-btn">
+                <button><a href="/manageflight">MANAGE FLIGHT</a></button>
+            </div>
+            <div class="nav-btn">
+                <button><a href="/viewpayment">VIEW PAYMENT DETAILS</a></button>
+            </div>
+            <div class="nav-logout-btn">
+                <form action="/" method="get">
+                    <button type="submit">LOGOUT</button>
+                </form>
+            </div>
+        </div>
+        <div class="op-box">
+            <span hidden><%= JSON.stringify(result); %></span>
+            <% if(toggle=='addflight'){ %>
+            <div class="add-flight">
+                <div class="form-box">
+                    <form action="/addflight" method="POST">
+                        <input class="form-input" type="text" name="flightName" id="" placeholder="Enter Flight Name" required>
+                        <input class="form-input" type="text" name="from" id="" placeholder="From" required>
+                        <input class="form-input" type="text" name="to" id="" placeholder="To" required>
+                        <p class="form-label">Departure Time</p>
+                        <input class="form-input" type="time" name="departure" id="departure" required>
+                        <p class="form-label">Arival Time</p>
+                        <input class="form-input" type="time" name="arival" id="arival" required>
+                        <div>
+                            <p class="form-label">Duration in hr:mm format <button type="button" onclick="calculateTime()">calculate</button></p>
+                            <input class="duration-input" type="text" name="hr" id="hr" placeholder="Hour" required>
+                            <input class="duration-input" type="text" name="min" id="min" placeholder="Minute" required>
+                        </div>
+                        <input class="form-input" type="text" name="price" id="" placeholder="Price" required>
+                        <input class="form-input" type="text" name="rating" id="" placeholder="Rating" required>
+                        <p class="form-label">Select Number of Seat</p>
+                        <select class="form-input" name="no_of_seat" id="seat">
+                            <option value="80">80 Seats</option>
+                            <option value="120">120 Seats</option>
+                        </select>
+                        <input class="form-input" type="text" name="country" id="country" placeholder="Origin Country" required>
+                        <input class="add-btn" type="submit" value="Add Flight">
+                    </form>
+                </div>
+            </div>
+            
+            <% }else if(toggle =='manageflight') { %>
+                <div class="add-flight">
+                    <h2>Not Departed Flights</h2>
+                    <%  for (let reqObj of result){
+                        var obj= JSON.parse(JSON.stringify(reqObj)) 
+                        if(obj.status=="not departed"){%>
+                            <div class="row-div">
+                                <% for (let [key, value] of Object.entries(obj).slice(0,-5)) { %>
+                                    <div class="small-container">
+                                        <h6 class="key"><%= key %></h6>
+                                        <h4 class="value"><%= value %></h4>
+                                    </div>
+                                <% } %>
+                                <form action="/departed" method="POST">
+                                    <input type="text" name="fid" id="" value="<%= obj.fid%>" hidden>
+                                    <button type="submit" class="dep-btn">MAKE DEPARTED</button>
+                                </form>
+                                <form action="/delete" method="POST">
+                                    <input type="text" name="fid" id="" value="<%= obj.fid%>" hidden>
+                                    <button type="submit" class="dlt-btn">DELETE</button>
+                                </form>
+                            </div>
+                    <%  }} %>
+                    <h2>Departed Flights</h2>
+                    <%  for (let reqObj of result){
+                        var obj= JSON.parse(JSON.stringify(reqObj)) 
+                        if(obj.status=="departed"){ %>
+                            <div class="row-div">
+                                <% for (let [key, value] of Object.entries(obj).slice(0,-5)) { %>
+                                    <div class="small-container">
+                                        <h6 class="key"><%= key %></h6>
+                                        <h4 class="value"><%= value %></h4>
+                                    </div>
+                                <% } %>
+                                <div class="small-container">
+                                    <h6 class="key">Country</h6>
+                                    <h4 class="value"><%= obj.status %></h4>
+                                </div>
+                                <form action="/delete" method="POST">
+                                    <input type="text" name="fid" id="" value="<%= obj.fid%>" hidden>
+                                    <button type="submit" class="dlt-btn">DELETE</button>
+                                </form>
+                            </div>
+                    <%  }} %>
+                </div>
+            <% }else if(toggle =='viewpayment') { %>
+                <div class="pay-table">
+                    <table>
+                        <tr>
+                            <th>Plane Id</th>
+                            <th>Amount</th>
+                            <th>Date</th>
+                            <th>Pyament Method</th>
+                        </tr>
+                    <% for (let reqObj of result){
+                        var obj= JSON.parse(JSON.stringify(reqObj))%>
+                        <tr>
+                            <%for(let val of Object.values(obj)){%>
+                                <th><%=val%></th>
+                            <%}%>
+                        </tr>
+                    <%} %>
+                    
+                    </table>
+                </div>
+            <%}%>
+        </div>
+    </div>
+    <script>   
+        function calculateTime() { 
+            var dep = document.getElementById("departure").value;
+            var ari = document.getElementById("arival").value;
+
+            var hourStart = new Date("01/01/2007 " +dep+ ":00").getHours();
+            var hourEnd = new Date("01/01/2007 " +ari+ ":00").getHours();
+            var hourDiff = hourEnd - hourStart;
+
+            var minStart = new Date("01/01/2007 " +dep+ ":00").getMinutes();
+            var minEnd = new Date("01/01/2007 " +ari+ ":00").getMinutes();
+            var minDiff = minEnd - minStart;
+            if(hourDiff.toString().length==1){
+                hourDiff = "0"+hourDiff.toString()
+            }
+            if(minDiff.toString().length==1){
+                minDiff = "0"+minDiff.toString()
+            }
+            document.getElementById("hr").value=hourDiff;
+            document.getElementById("min").value=minDiff;     
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Travel Booking</title>
+    <link rel="stylesheet" href="css/planeListStyle.css">
+
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">     
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>     
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>     
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+</head>
+<body>
+    <div class="container-options bg-light bd rounded mt-2 px-2 pb-1">
+        <span id='object' hidden>
+            <%= JSON.stringify(request); %>
+        </span>
+        <h6 class="text-center mb-1"><%= type %></h6>
+        <hr class="hr-line m-0 mb-1">
+        <div class="place-container">
+            <% for (let [index, reqObj] of Object.entries(request)){ %>
+                <div class="row-div">
+                    <label>
+                        <input type="radio" id="<%=index%>r" name="flight-name" value="<%= index %>" onclick="setResults(this.value)" required>
+                    </label>
+                <% for (let [key, value] of Object.entries(reqObj).slice(1)) { %>
+                    <div class="small-container">
+                        <h6 class="mb-0 key"><%= key %></h6>
+                        <h4 class="mb-0 value"><%= value %></h4>
+                    </div>
+                <% } %>
+                </div>
+            <% } %>
+        </div>
+    </div>
+    <div class="flight-container bd rounded mt-3" id="fc">
+        <div class="font-weight-bold top-info-box py-1">
+            <span>Flight Name</span>
+            <span>Departure</span>
+            <span>Duration</span>
+            <span>Arrival</span>
+            <span>Price</span>
+            <span>
+                <select onchange="getSort(this.value)">
+                    <option value="">Sort</option>
+                    <option value="PI">Price High to Low</option>
+                    <option value="PD">Price Low to High</option>
+                    <option value="MP">Most Popular</option>
+                </select>
+            </span>
+        </div>
+        <span id='result-object' hidden>
+            <%= JSON.stringify(result); %>
+        </span>
+    </div>
+    <div class="go-back bd rounded mt-3">
+        <button type="button"><a href="/dashboard">Go Back</a></button>
+    </div>
+
+    <script>
+        var x = JSON.parse(document.getElementById("object").innerText);
+
+
+        document.getElementById("0r").checked=true;
+        var result = JSON.parse(document.getElementById("result-object").innerText);
+
+        function setResults(value){
+            for(let i=0;i<x.length;i++){
+                document.getElementById(i).style.display="none";
+            }
+            document.getElementById(value).style.display="block";
+        }
+
+        function getSort(value){
+            if(value=="PI"){
+                result[0].sort((a,b) => b.price - a.price)
+            }
+            else if(value=="PD"){
+                result[0].sort((a,b) => a.price - b.price)
+            }
+            else if(value=="MP"){
+                result[0].sort((a,b) => b.rating - a.rating)
+            }
+
+            for(let i=0;i<x.length;i++){
+                document.getElementById(i).remove();
+            }
+            createDiv(result);
+            for(let i=0;i<x.length;i++){
+                if(document.getElementById(i+"r").checked){
+                    document.getElementById(i).style.display="block";
+                }
+            }
+        }
+
+        function createDiv(){
+            var card = document.createElement("div");
+			card.innerHTML ="";
+            for (let [index, resObj] of Object.entries(result)){
+                var flight_list = document.createElement("div");
+                flight_list.classList.add("flight-list");
+                flight_list.setAttribute("id",index);
+                flight_list.style.display="none";
+                var element = document.getElementById("fc");
+                element.appendChild(flight_list);
+                for (let [ind, value] of Object.entries(resObj)){
+                    var flight_row = document.createElement("div");
+                    flight_row.classList.add("flight-row");
+                    flight_row.classList.add("py-2");
+                    flight_row.classList.add("pl-3");
+                    flight_row.classList.add("mt-2");
+                    flight_row.innerHTML=`<span class="font-weight-bold h5 mt-2">`+value.flightName+`</span>
+                                            <span>
+                                                <span class="font-weight-bold h5">`+value.departure+`</span><br>
+                                                `+value.from+`
+                                            </span>
+                                            <span>
+                                                <span class="font-weight-normal h6">`+value.duration+`</span><br>
+                                                <img class="timer" src="images/sand-clock.png" alt="timer"/>
+                                            </span>
+                                            <span>
+                                                <span class="font-weight-bold h5">`+value.arival+`</span><br>
+                                                `+value.to+`
+                                            </span>
+                                            <span class="font-weight-bold h5 mt-2">₹ `+value.price+`</span>
+                                            <form method="POST" action="/bookseat">
+                                                <input type="text" id="`+index+ind+`" name="rdata" style="display:none;">
+                                                <span class="mt-2">
+                                                    <button type="submit" class="book-btn" onclick="getRadio(`+index+ind+`,`+value.fid+`)">Book Now</button>
+                                                </span>
+                                            </form>`;
+                    var ele = document.getElementById(index);
+                    ele.appendChild(flight_row);
+                }
+            }
+        }
+        function getRadio(id,fid){
+            if(id.toString().length==1){
+                id = "0"+id;
+            }
+            for(let i=0;i<x.length;i++){
+                if(document.getElementById(i+"r").checked){
+                    var newData = {
+                        ... x[i],
+                        fid:fid
+                    }
+                    document.getElementById(id).value= JSON.stringify(newData);
+                }
+            }
+        }
+        createDiv(result);
+        document.getElementById("0").style.display="block";
+    </script>
+</body>
+</html>

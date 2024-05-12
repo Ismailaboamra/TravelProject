@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Travel Booking</title>
+    <link rel="stylesheet" href="css/seatListStyle.css">
+
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">     
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>     
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>     
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+</head>
+<body>
+    <div>
+        <div class="container-options bg-light bd rounded mt-2 px-2 pb-1">
+            <span id='object' hidden>
+                <%= JSON.stringify(rData); %>
+            </span>
+            <h6 class="text-center mb-1"><%= rData.flightType  %></h6>
+            <hr class="hr-line m-0 mb-1">
+            <div class="place-container">
+                <div class="row-div">
+                    <% for (let [key, value] of Object.entries(rData).slice(1,-1)) { %>
+                    <div class="small-container">
+                        <h6 class="mb-0 key"><%= key %></h6>
+                        <h4 class="mb-0 value"><%= value %></h4>
+                    </div>
+                    <% } %>
+                    <div class="small-container-red">
+                        <h6 class="mb-0 key">Total Passengers</h6>
+                        <h4 class="mb-0 value"><%= parseInt(rData.adult)+parseInt(rData.child) %></h4>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="color-op">
+            <span class="color-op-container">
+                <div class="circle" style="background-color: rgb(106, 249, 113);"></div>
+                Available Seat
+            </span>
+            <span class="color-op-container">
+                <div class="circle" style="background-color: rgb(249, 106, 106);"></div>
+                Selected Seat
+            </span>
+            <span class="color-op-container">
+                <div class="circle" style="background-color: rgb(148, 196, 255);"></div>
+                Booked Seat
+            </span>
+        </div>
+        <div class="seat-container">
+            <img class="plane-img" src="images/plane-seat.png" alt="plane image">
+            <div class="seat-box">
+                <% var index=0;
+                for(let i=1;i<(sData.no_of_seat/2)+1;i++){
+                    if(sData.bookedSeat.includes(index+=1)){%>  
+                    <div class="seat p-1" id="<%= index%>" style="background-color:rgb(148, 196, 255)" onclick="pickSeat(this.id)">
+                        <%= index%>
+                    </div>
+                    <%}else{%>
+                    <div class="seat p-1" id="<%= index%>" onclick="pickSeat(this.id)">
+                        <%= index%>
+                    </div>
+                <%}}%>
+                <br><br>
+                <% for(let i=1;i<(sData.no_of_seat/2)+1;i++){
+                    if(sData.bookedSeat.includes(index+=1)){%>  
+                    <div class="seat p-1" id="<%= index%>" style="background-color:rgb(148, 196, 255)" onclick="pickSeat(this.id)">
+                        <%= index%>
+                    </div>
+                    <%}else{%>
+                    <div class="seat p-1" id="<%= index%>" onclick="pickSeat(this.id)">
+                        <%= index%>
+                    </div>
+                <%}}%>
+            </div>
+        </div>
+        <div class="container-btn">
+            <form action="/payment" method="POST">
+                <input type="text" value="<%= JSON.stringify(rData);%>" hidden name="data">
+                <input type="text" name="seatArr" id="seatArr" value="" hidden>
+                <button id="ptp" type="button" class="ptp" onclick="showToggle()">Proceed To Pay</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        var rData = JSON.parse(document.getElementById("object").innerText);
+        var count=0;
+        var seatArr = []
+        function pickSeat(id){
+            var total = parseInt(rData.adult)+parseInt(rData.child);
+            if(document.getElementById(id).style.backgroundColor!="rgb(249, 106, 106)" && document.getElementById(id).style.backgroundColor!="rgb(148, 196, 255)"){
+                if(count<total){
+                    document.getElementById(id).style.backgroundColor="rgb(249, 106, 106)";
+                    count++;
+                    seatArr.push(id)
+                    if(count>=total){
+                        document.getElementById("seatArr").value=seatArr;
+                        document.getElementById("ptp").type = "submit";
+                    }
+                }
+            }
+            else if(document.getElementById(id).style.backgroundColor=="rgb(148, 196, 255)"){
+                alert("This seat is already booked!");
+            }
+            else{
+                if(count<total){
+                    alert("Please pick different seat");
+                }
+            }
+        }
+        function showToggle(){
+            var total = parseInt(rData.adult)+parseInt(rData.child);
+            if(count<total){
+                alert("please select the seat")
+            }
+        }
+    </script>
+
+</body>
+</html>
